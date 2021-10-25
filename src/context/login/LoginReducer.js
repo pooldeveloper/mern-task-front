@@ -15,8 +15,8 @@ const LoginReducer = (state, action) => {
             localStorage.setItem('token', action.payload)
             return{
                 ...state,
-                load: true,
                 auth: true,
+                load: false
             }
         case LOGIN_ERROR:
         case NEW_USER_ERROR:
@@ -24,8 +24,8 @@ const LoginReducer = (state, action) => {
             localStorage.removeItem('token')
             return{
                 ...state,
-                load:false,
-                auth: null,
+                auth: false,
+                load: true,
                 token: null,
                 user: null,
                 messageError: action.payload
@@ -33,8 +33,8 @@ const LoginReducer = (state, action) => {
         case GET_USER:
             return{
                 ...state,
-                load:false,
                 auth: true,
+                load: false,
                 user: action.payload
             }
         case RESET_PWD:

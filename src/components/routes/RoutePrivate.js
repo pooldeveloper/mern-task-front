@@ -1,11 +1,10 @@
 import React,{useEffect, useContext} from 'react';
-import { Route, useHistory } from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import LoginContext from '../../context/login/LoginContext';
 
 
 const RoutePrivate = ({component: Component, ...props}) => {
 
-    const history = useHistory();
     const{load, auth, getUserAuth} = useContext(LoginContext)
     
     useEffect(() => {
@@ -14,8 +13,8 @@ const RoutePrivate = ({component: Component, ...props}) => {
     }, [])
 
     return (
-        <Route {...props} render = {props => !auth && !load ? (
-            history.push('/login')
+        <Route {...props} render = {props => !auth && load ? (
+            <Redirect to="/login"/>
         ) : (
             <Component {...props}/>
         )}/>

@@ -18,10 +18,10 @@ import {
 const LoginState = (props) => {
   const initialState = {
     token: localStorage.getItem("token"),
-    auth: null,
+    auth: false,
     messageError: null,
     user: null,
-    load: true,
+    load: false,
     rpSuccess: null,
     redirectLogin: false,
   };
